@@ -1,0 +1,6 @@
+name = "baba ji"
+numHeads = 1;
+numArms = 2;
+
+print "{} has {} heads and {} arms" .format(name, numHeads, numArms)
+
