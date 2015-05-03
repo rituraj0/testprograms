@@ -55,8 +55,9 @@ inline  ll rever( ll in)
 }
 
 
-int go(ll in)
+ll go(ll in)
 {
+
     if( in < 10)
       return in;
 
@@ -71,7 +72,7 @@ int go(ll in)
 
     ll rv = rever(in);
 
-    if( rv==in)
+    if( rv>=in )
        return cn+1+go(in-1);
 
     return cn+go(rv)+1;//eke reverse ka
@@ -80,13 +81,14 @@ int go(ll in)
 
 void solve(int test)
 {
-   int ans=0;
+
 
    int in;
 
    cin>>in;
 
-   printf("Case #%d: %d\n",test,go(in));
+   printf("Case #%d: %lld\n",test,go(in));
+
 
 }
 

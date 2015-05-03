@@ -3,19 +3,16 @@ pat ="CODEFORCES"
 
 if __name__ == '__main__':
 	inp = str( raw_input() );
-	j=0;
-	index=[]
-	for i in range(len(pat)):
-		mila=False;
-		while(j<len(inp)):
-			if( inp[j] == pat[i] ):
-				mila=True;				
-				break;
-			j+=1;
-		if(mila==False):
-			print("NO");
+	for i in range(len(pat)+1):#itna begining me
+		prev=inp[:i]
+		rem=len(pat)-i;
+		last="";
+		if(rem>0):
+			last=inp[-rem:]
+		if( prev+last == pat):
+			print("YES");
 			sys.exit();
-	print("YES");
+	print("NO");
 
 
 

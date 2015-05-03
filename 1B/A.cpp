@@ -37,11 +37,14 @@ vector <string> parse(string s, string c)
 
 /*Solution code starts here */
 
+#define maxn (10000001)
 
-inline  ll rever( ll in)
+int ulta[maxn];
+
+inline void rever( int in)
 {
-   ll ans =0;
-   ll save= in;
+   int ans =0;
+   int save= in;
 
    while(in!=0)
    {
@@ -50,31 +53,40 @@ inline  ll rever( ll in)
       in = in/10;
    }
 
-   return ans;
-
+   ulta[save]=ans;
 }
 
+int dist[maxn];
 
-int go(ll in)
+queue<int> Q;
+void process()
 {
-    if( in < 10)
-      return in;
+   fill(dist,-1);
 
+   dist[1]=1;
+   Q.push(1);
 
-    int cn = 0 ;
+   while(!Q.empty())
+   {
+       int curr= Q.front(); Q.pop();
 
-    while( (in%10) !=1 )
-    {
-        in--;
-        cn++;
-    }
+       if( curr >= maxn)
+         continue;
 
-    ll rv = rever(in);
+       //add 1
+       if( dist[curr+1]==-1)
+       {
+         dist[curr+1]=dist[curr]+1;
+         Q.push(curr+1);
+       }
 
-    if( rv==in)
-       return cn+1+go(in-1);
+       if( dist[ ulta[curr] ]==-1)
+       {
+           dist[ ulta[curr] ] = dist[curr+1];
+           Q.push( ulta[curr] );
+       }
+   }
 
-    return cn+go(rv)+1;//eke reverse ka
 
 }
 
@@ -86,13 +98,18 @@ void solve(int test)
 
    cin>>in;
 
-   printf("Case #%d: %d\n",test,go(in));
+   printf("Case #%d: %d\n",test,dist[in]);
 
 }
 
 
 int main()
 {
+
+    for(int i=1;i<maxn;i++)
+      rever(i);
+
+     process();
 
     int test;
 
