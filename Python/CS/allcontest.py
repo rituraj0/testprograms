@@ -68,7 +68,7 @@ def  get_unsolved():#unsolved questions after Div_2_200 [A.D];
 		if( curr[0] in div_2):
 			done[ curr ] = True;
 
-	print("Mapping done");
+	#print("Mapping done");
 
 	tosolve="ABCD";
 
@@ -79,6 +79,7 @@ def  get_unsolved():#unsolved questions after Div_2_200 [A.D];
 
 	for con_id in div_2:
 		for pro_id in tosolve:
+			
 			if( con_id < 342):#199 th ka ID 342 hai
 				continue;
 
@@ -88,11 +89,27 @@ def  get_unsolved():#unsolved questions after Div_2_200 [A.D];
 				unsolved+=1;
 				ans.append( (con_id,pro_id));
 
-	print( "unsolved is %s and Solved is %s" % (unsolved,solved));
+	#print( "Unsolved is %s \n and Solved is %s" % (unsolved,solved));
 	return ans;
 
 
 
 if __name__ == '__main__':
-	get_unsolved();
+	todo = get_unsolved();
+
+	a=0;b=0;c=0;d=0;
+
+	for curr in todo:		
+		if( curr[1] =='A'):
+			a+=1;
+		elif( curr[1] == 'B'):
+			b+=1;
+		elif( curr[1] =='C'):
+			c+=1;
+		elif( curr[1] =='D'):
+			d+=1;
+	
+	print("A: %s B: %s C: %s D: %s " %(a,b,c,d) );
+
+
 
