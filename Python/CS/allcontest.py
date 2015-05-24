@@ -93,6 +93,9 @@ def  get_unsolved():#unsolved questions after Div_2_200 [A.D];
 	return ans;
 
 
+def get_problem( contest , id):
+	ans = "http://codeforces.com/contest/{0}/problem/{1}".format(contest,id);
+	return ans;
 
 if __name__ == '__main__':
 	todo = get_unsolved();
@@ -106,6 +109,7 @@ if __name__ == '__main__':
 			b+=1;
 		elif( curr[1] =='C'):
 			c+=1;
+			print( get_problem(curr[0] , curr[1]));
 		elif( curr[1] =='D'):
 			d+=1;
 	
