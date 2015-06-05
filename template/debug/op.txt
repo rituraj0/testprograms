@@ -41,8 +41,8 @@ vector <string> parse(string s, string c)
 int n;
 int in[maxn];
 
-int left_min[maxn];//index of first number( towards left side) that is minimum than curr
-int right_min[maxn];//index of first number(towards rigt side) that is minimum than curr
+int left_max[maxn];//index of first number( towards left side) that is greater than curr
+int right_max[maxn];//index of first number(towards rigt side) that is greatet than curr
 
 int ans[maxn];
 
@@ -54,7 +54,7 @@ int main()
     for(int i=1; i<=n; i++)
       cin>>in[i];
 
-    in[0]=in[n+1]=-(1e9+25);
+    in[0]=in[n+1]=(1e9+25);
 
     {
          //calculate right_max
@@ -63,21 +63,21 @@ int main()
 
          for(int i=n;i>=1;i--)
          {
-             while( in[st.top()] >= in[i] )//stack in increasing order
+             while( in[st.top()] <= in[i] )
                 st.pop();
 
-             right_min[i]=st.top();
+             right_max[i]=st.top();
              st.push(i);
          }
 
     }
 
-    //cout<<"** right min\n";
+    cout<<"** right max\n";
 
-    //for(int i=1;i<=n;i++)
-     //cout<<right_min[i]<<" ";
+    for(int i=1;i<=n;i++)
+     cout<<right_max[i]<<" ";
 
-    //cout<<"  \n**";
+    cout<<"  \n**";
 
 
     {
@@ -88,35 +88,35 @@ int main()
 
         for(int i=1;i<=n;i++)
         {
-            while( in[st.top()] >= in[i] )
+            while( in[st.top()] <= in[i] )
              st.pop();
 
-            left_min[i]=st.top();
+            left_max[i]=st.top();
             st.push(i);
         }
     }
 
-    //cout<<"** Left min\n";
+    cout<<"** Left max\n";
 
-//    for(int i=1;i<=n;i++)
-//     cout<<left_min[i]<<" ";
+    for(int i=1;i<=n;i++)
+     cout<<left_max[i]<<" ";
 
-    //cout<<"  \n**";
+    cout<<"  \n**";
      //
     fill(ans,0);
 
-    //cout<<" ** Len is\n";
+    cout<<" ** Len is\n";
 
     for(int i=1;i<=n;i++)
     {
-        int len=( i - left_min[i] -1) + ( right_min[i] - i -1) +1;
+        int len=( i - left_max[i] -1) + ( right_max[i] - i -1) +1;
 
-      //  cout<<len<<" ";
+        cout<<len<<" ";
 
         ans[len]=max( ans[len] , in[i] );
     }
 
-    //cout<<"\n";
+    cout<<"\n";
     //calculate for len = N
     ans[n]=(1e9)+10;
 
