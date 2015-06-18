@@ -1,11 +1,26 @@
-import Queue as Q
+import Queue
+from bs4 import BeautifulSoup
+from urllib2 import urlopen
 
-pq = Q.PriorityQueue();
+Q = Queue.Queue();
+Q.put("http://www.dmoz.org/")
 
-pq.put(10);
+done = {};
 
-for xy in range(1,10):
-	pq.put(xy*xy%47);
+while not Q.empty():
+	curr=Q.get();
 
-while not pq.empty():
-	print( pq.get() );
+	if done.has_key(curr):
+		continue;
+
+	print(" *****  {0}   *****".format(curr));
+	page=urlopen(curr);
+	soup=BeautifulSoup(page,"html.parser");
+	urls=soup.findAll('a' , href=True);
+	for xy in urls:
+		Q.put(xy['href']);
+		print( xy['href']);
+
+
+
+
