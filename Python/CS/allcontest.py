@@ -69,8 +69,8 @@ def  get_unsolved():#unsolved questions after Div_2_200 [A.D];
 			done[ curr ] = True;
 
 	#print("Mapping done");
-
-	tosolve="ABCD";
+	print("Eneter the div-2-problems ex. ABCD if you want A,B,C,D")
+	tosolve=str( raw_input());
 
 	solved =0 ;
 	unsolved=0;
